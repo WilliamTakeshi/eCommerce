@@ -1,3 +1,8 @@
+db.sqlite3
+ecommerce.sublime-project
+ecommerce.sublime-workspace
+ecommerce/settings.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
