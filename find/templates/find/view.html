@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class='container'>
+        {% if request.GET.q %}
+        <div class='row'>
+            <div class='col-12'>
+                <p>Searched for <strong>{{ request.GET.q }}</strong></p>
+            </div>
+
+        </div>
+        <hr>
+        {% endif %}
+        <div class='row'>
+            {% for obj in object_list %}
+                <div class='column'>
+                    {% include 'products/snippets/card.html' with instance=obj %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

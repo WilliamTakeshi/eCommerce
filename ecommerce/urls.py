@@ -29,6 +29,7 @@ urlpatterns = [
     path('register/', register_page, name='register'),
     path('admin/', admin.site.urls),
     path('products/', include("products.urls")),
+    path('search/', include("find.urls")),
 ]
 
 if settings.DEBUG:
