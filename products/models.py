@@ -3,7 +3,7 @@ import os
 import random
 from django.db.models.signals import pre_save
 from .utils import unique_slug_generator
-# Create your models here.
+from django.urls import reverse
 
 
 def get_filename_ext(filepath):
@@ -54,7 +54,7 @@ class Product(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return f'/product/{self.slug}'
+        return reverse('products:detail', kwargs={'slug': self.slug})
 
 
 def product_pre_save_receiver(sender, instance, *args, **kwargs):

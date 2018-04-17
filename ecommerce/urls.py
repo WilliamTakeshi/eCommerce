@@ -25,10 +25,10 @@ from products.views import (ProductListView,
                             ProductFeaturedListView)
 
 urlpatterns = [
-    path('login/', login_page),
-    path('register/', register_page),
+    path('login/', login_page, name='login'),
+    path('register/', register_page, name='register'),
     path('admin/', admin.site.urls),
-    path('product/', include("products.urls")),
+    path('products/', include("products.urls")),
 ]
 
 if settings.DEBUG:
