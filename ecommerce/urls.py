@@ -29,9 +29,9 @@ urlpatterns = [
     path('register/', register_page),
     path('admin/', admin.site.urls),
     path('product/', ProductListView.as_view()),
-    path('product/<int:pk>/', ProductDetailView.as_view()),
+    path('product/<slug:slug>/', ProductDetailView.as_view()),
     path('featured/', ProductFeaturedListView.as_view()),
-    path('featured/<int:pk>/', ProductFeaturedDetailView.as_view()),
+    path('featured/<slug:slug>/', ProductFeaturedDetailView.as_view()),
 ]
 
 if settings.DEBUG:
