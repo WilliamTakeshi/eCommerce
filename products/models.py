@@ -2,8 +2,9 @@ from django.db import models
 import os
 import random
 from django.db.models.signals import pre_save
-from .utils import unique_slug_generator
+from ecommerce.utils import unique_slug_generator
 from django.urls import reverse
+from django.db.models import Q
 
 
 def get_filename_ext(filepath):
@@ -27,6 +28,10 @@ class ProductQuerySet(models.query.QuerySet):
     def featured(self):
         return self.filter(featured=True, active=True)
 
+    def search(self, query):
+        lookups = Q(title__icontains=query) | Q(description__icontains=query) | Q(tag__title__icontains=query)
+        return self.filter(lookups).distinct()
+
 
 class ProductManager(models.Manager):
     def get_queryset(self):
@@ -37,6 +42,9 @@ class ProductManager(models.Manager):
 
     def all(self):
         return self.get_queryset().active()
+
+    def search(self, query):
+        return self.get_queryset().active().search(query)
 
 
 class Product(models.Model):
